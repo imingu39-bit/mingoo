@@ -41,7 +41,7 @@ with tab1:
                             supabase.storage.from_("maintenance_photos").upload(file_name, uploaded_file.getvalue())
                             img_url = supabase.storage.from_("maintenance_photos").get_public_url(file_name)
 
-                        # DB 저장 (테이블 이름: maintenance_reports)
+                        # DB 저장 (테이블 이름: maintenance_report)
                         data = {
                             "reporter": reporter,
                             "charger_id": charger_id,
@@ -50,12 +50,12 @@ with tab1:
                             "image_url": img_url,
                             "status": "접수완료"
                         }
-                        supabase.table("maintenance_reports").insert(data).execute()
+                        supabase.table("maintenance_report").insert(data).execute()
                         st.success("✅ 전국 통합 서버로 신고가 정상 접수되었습니다!")
                         st.balloons()
                     except Exception as e:
                         st.error(f"⚠️ 연결 오류 발생: {e}")
-                        st.info("슈파베이스의 'maintenance_reports' 테이블이 생성되어 있는지 확인해주세요.")
+                        st.info("슈파베이스의 'maintenance_report' 테이블이 생성되어 있는지 확인해주세요.")
 
 # --- [탭 2: 전체 내역 확인] ---
 with tab2:
