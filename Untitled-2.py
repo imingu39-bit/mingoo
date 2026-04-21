@@ -62,7 +62,7 @@ with tab2:
     st.subheader("📋 실시간 전국 접수 현황")
     try:
         # DB에서 최신순으로 데이터 가져오기
-        response = supabase.table("maintenance_reports").select("*").order("created_at", desc=True).execute()
+        response = supabase.table("maintenance_report").select("*").order("created_at", desc=True).execute()
         if response.data:
             df = pd.DataFrame(response.data)
             st.dataframe(df, use_container_width=True)
